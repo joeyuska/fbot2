@@ -1,26 +1,15 @@
-User                                                                 = require './src/user'
-Brain                                                                = require './src/brain'
-Robot                                                                = require './src/robot'
-Adapter                                                              = require './src/adapter'
-Response                                                             = require './src/response'
-{Listener,TextListener}                                              = require './src/listener'
-{Message,TextMessage,EnterMessage,LeaveMessage,TopicMessage,CatchAllMessage} = require './src/message'
+SlackBot = require './src/slack'
+{SlackTextMessage, SlackRawMessage, SlackBotMessage} = require './src/message'
+{SlackRawListener, SlackBotListener} = require './src/listener'
 
-module.exports = {
-  User
-  Brain
-  Robot
-  Adapter
-  Response
-  Listener
-  TextListener
-  Message
-  TextMessage
-  EnterMessage
-  LeaveMessage
-  TopicMessage
-  CatchAllMessage
+module.exports = exports = {
+  SlackBot
+  SlackTextMessage
+  SlackRawMessage
+  SlackBotMessage
+  SlackRawListener
+  SlackBotListener
 }
 
-module.exports.loadBot = (adapterPath, adapterName, enableHttpd, botName) ->
-  new Robot adapterPath, adapterName, enableHttpd, botName
+exports.use = (robot) ->
+  new SlackBot robot
